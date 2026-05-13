@@ -52,6 +52,14 @@
                         ->findAll();
         }
 
+        public function getDernieresDemandes($employe_id, $limit = 5)
+        {
+            $demandeModel = new DemandeModel();
+            return $demandeModel->where('employe_id', $employe_id)
+                                ->orderBy('created_at', 'DESC')
+                                ->findAll($limit);
+        }
+
     }
     
 

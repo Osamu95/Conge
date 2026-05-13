@@ -6,7 +6,14 @@ use App\Models\EmployesModel;
 class EmployeController extends BaseController
 {
     public function home(){
-        return view('modal', ['page' => 'pages/dashboard-employe']);
+        $employeModel = new EmployesModel();
+        return view('modal', [
+            'page' => 'pages/dashboard-employe',
+            'title' => 'Tableau de bord',
+            'sidebar' => 'Espace employé',
+            // 'sidebar' => view('inc/sidebar', ['active' => 'dashboard']),
+            'demandes' => $employeModel->where('employe_id', session()->get('user_id'))->findAll()
+        ]);
     }
 
     public function demandeForm(){
