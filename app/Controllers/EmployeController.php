@@ -7,12 +7,15 @@ class EmployeController extends BaseController
 {
     public function home(){
         $employeModel = new EmployesModel();
+        $demandes = $employeModel->getDernieresDemandes(1, 5);
+        $statistiques = $employeModel->getStatDemandes(1);
         return view('modal', [
             'page' => 'pages/dashboard-employe',
             'title' => 'Tableau de bord',
             'sidebar' => 'Espace employé',
             // 'sidebar' => view('inc/sidebar', ['active' => 'dashboard']),
-            'demandes' => $employeModel->where('employe_id', session()->get('user_id'))->findAll()
+            'demandes' => $demandes,
+            'statistiques' => $statistiques
         ]);
     }
 

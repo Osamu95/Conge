@@ -67,7 +67,7 @@ class CongeModel extends Model
         ],
     ];
 
-    public function getCongeComplet()
+    public function getCongesByEmployeId($id, $limit = null, $order = null, $statut = null)
     {
         return $this->select('
                         conges.*,
@@ -77,8 +77,30 @@ class CongeModel extends Model
                     ')
                     ->join('employes', 'employes.id = conges.employe_id')
                     ->join('types_conge', 'types_conge.id = conges.types_conge_id')
+                    ->where('conges.id', $id);
+        if ($statut) {
+            $this->where('conges.statut', $statut);
+        }
+        if ($order) {
+            $this->orderBy('ASC');
+        }
+        if ($limit) {
+            return $this->limit($limit)->first();
+        }
+        return $this->first();
+    }
+
+    public function getCongeComplet()
+    {
+        return $this->select('
+                        conges.*,
+                        employes.nom,
+                        employes.prenom,
+                        types_conge.libelle as type_libelle
+                    ')
+                    ->join('employes', 'employes.id = conges.employe_id')
+                    ->join('types_conge', 'types_conge.id = conges.types_conge_id')
                     ->findAll();
     }
-    
 
 }

@@ -53,3 +53,7 @@ CREATE TABLE conges (
     FOREIGN KEY (types_conge_id) REFERENCES types_conge(id),
     FOREIGN KEY (traite_par) REFERENCES employes(id)
 );
+
+
+-- obtenir les dernieres demande de conge d'un employe
+SELECT * FROM conges WHERE employe_id = 1 ORDER BY created_at DESC LIMIT 5;
