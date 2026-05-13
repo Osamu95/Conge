@@ -10,9 +10,9 @@ class EmployeController extends BaseController
         return view('modal', [
             'page' => 'pages/dashboard-employe',
             'title' => 'Tableau de bord',
-            'sidebar' => 'Espace employé'
+            'sidebar' => 'Espace employé',
             // 'sidebar' => view('inc/sidebar', ['active' => 'dashboard']),
-            // 'demandes' => $employeModel->where('employe_id', session()->get('user_id'))->findAll()
+            'demandes' => $employeModel->where('employe_id', session()->get('user_id'))->findAll()
         ]);
     }
 
