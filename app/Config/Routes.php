@@ -9,12 +9,24 @@ $routes->get('/', 'AuthController::loginForm');
 $routes->post('/login', 'AuthController::login');
 $routes->get('/logout', 'AuthController::logout');
 
+// Routes pour l'employé
 $routes->group('/employe', function($routes) {
+    // Dashboard / Accueil
     $routes->get('dashboard', 'EmployeController::home');
+    $routes->get('/', 'EmployeController::home'); // Route par défaut
+    
+    // Gestion des demandes de congé
     $routes->get('new-demande', 'EmployeController::demandeForm');
     $routes->post('new-demande', 'EmployeController::submitDemande');
     $routes->get('demandes', 'EmployeController::getDemandes');
+    $routes->get('annuler-demande/(:num)', 'EmployeController::annulerDemande/$1');
+    
+    // Profil employé
     $routes->get('profil', 'EmployeController::profile');
+    $routes->post('profil/update', 'EmployeController::updateProfile');
+    
+    // Statistiques (optionnel)
+    $routes->get('statistiques', 'EmployeController::getStatistics');
 });
 
 $routes->group('/rh', function($routes) {

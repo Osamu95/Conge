@@ -23,12 +23,12 @@
       <div class="metrics">
         <div class="metric">
           <div class="metric-top"><div class="metric-icon mi-amber"><i class="bi bi-hourglass-split"></i></div></div>
-          <div class="metric-val">2</div>
+          <div class="metric-val"><?= $statistiques['en_attente'] ?></div>
           <div class="metric-label">En attente</div>
         </div>
         <div class="metric">
           <div class="metric-top"><div class="metric-icon mi-green"><i class="bi bi-check-circle"></i></div></div>
-          <div class="metric-val">5</div>
+          <div class="metric-val"><?= $statistiques['approuve'] ?></div>
           <div class="metric-label">Approuvées</div>
         </div>
         <div class="metric">
@@ -88,9 +88,9 @@
           <?php foreach($demandes as $demande): ?>
             <tr>
               <td><span class="type-badge t-annuel">Annuel</span></td>
-              <td class="td-muted">16 juin 2025</td>
-              <td class="td-muted">20 juin 2025</td>
-              <td class="td-mono">5 j</td>
+              <td class="td-muted"><?= $demande['date_debut'] ?></td>
+              <td class="td-muted"><?= $demande['date_fin'] ?></td>
+              <td class="td-mono"><?= $demande['nb_jours'] ?> j</td>
               <td><span class="statut s-attente">en attente</span></td>
               <td><button class="btn-sm btn-cancel"><i class="bi bi-x"></i> Annuler</button></td>
             </tr>
