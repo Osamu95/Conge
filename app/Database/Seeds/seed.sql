@@ -4,12 +4,11 @@ INSERT INTO departments (nom, description) VALUES
 ('Informatique', 'Développement et maintenance infrastructure');
 
 -- Insertion des employés (Admin et Employés)
--- Note : Les mots de passe sont stockés en clair ici à titre d'exemple, 
--- mais devraient être hachés en production.
+-- Note : Les mots de passe sont hachés avec bcrypt
 INSERT INTO employes (nom, prenom, email, passwd, role, department_id, date_embauche, actif) VALUES 
-('Boucher', 'Jean', 'admin@entreprise.com', 'admin123', 'ADMIN', 1, '2024-01-01', 1),
-('Durand', 'Marie', 'm.durand@entreprise.com', 'user123', 'EMPLOYE', 2, '2024-02-15', 1),
-('Martin', 'Lucas', 'l.martin@entreprise.com', 'user456', 'EMPLOYE', 2, '2024-03-01', 1);
+('Boucher', 'Jean', 'admin@entreprise.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ADMIN', 1, '2024-01-01', 1),
+('Durand', 'Marie', 'm.durand@entreprise.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'EMPLOYE', 2, '2024-02-15', 1),
+('Martin', 'Lucas', 'l.martin@entreprise.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'EMPLOYE', 2, '2024-03-01', 1);
 
 INSERT INTO types_conge (libelle, jours_annuels, deductible) VALUES 
 ('Congés Payés', 25, 1),
