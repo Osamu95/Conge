@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
+use App\Models\EmployesModel;
 use Config\Services;
 
 class AuthController extends BaseController{
@@ -14,7 +14,9 @@ class AuthController extends BaseController{
             return redirect()->to('/' . strtolower(session()->get('user')['role']) . '/dashboard');
         }
 
-        return view('pages/index');
+        return view('pages/index', [
+            'title' => 'Login'
+        ]);
     }
 
     public function login(){
@@ -33,8 +35,8 @@ class AuthController extends BaseController{
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
-        $userModel = new UserModel();
-        $user = $userModel->where('email', $email)->first();
+        $EmployesModel = new EmployesModel();
+        $user = $EmployesModel->where('email', $email)->first();
 
         if($user && password_verify($password, $user['password'])) {
             // Vérifier si l'utilisateur est actif
