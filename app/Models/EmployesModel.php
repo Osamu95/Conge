@@ -52,7 +52,7 @@
                         ->findAll();
         }
 
-        public function getDernieresDemandes($employe_id, $limit = 5)
+        public function getDernieresDemandes($employe_id, $limit)
         {
             $demandeModel = new DemandeModel();
             return $demandeModel->where('employe_id', $employe_id)

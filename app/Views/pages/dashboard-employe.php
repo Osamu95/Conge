@@ -84,6 +84,8 @@
             <tr><th>Type</th><th>Du</th><th>Au</th><th>Durée</th><th>Statut</th><th>Action</th></tr>
           </thead>
           <tbody>
+
+          <?php foreach($demandes as $demande): ?>
             <tr>
               <td><span class="type-badge t-annuel">Annuel</span></td>
               <td class="td-muted">16 juin 2025</td>
@@ -92,7 +94,8 @@
               <td><span class="statut s-attente">en attente</span></td>
               <td><button class="btn-sm btn-cancel"><i class="bi bi-x"></i> Annuler</button></td>
             </tr>
-            <tr>
+          <?php endforeach; ?>
+            <!-- <tr>
               <td><span class="type-badge t-maladie">Maladie</span></td>
               <td class="td-muted">2 juin 2025</td>
               <td class="td-muted">3 juin 2025</td>
@@ -107,7 +110,7 @@
               <td class="td-mono">5 j</td>
               <td><span class="statut s-approuvee">approuvée</span></td>
               <td><span class="td-muted" style="font-size:.75rem">—</span></td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>

@@ -557,3 +557,13 @@ in APPPATH/Views/pages/dashboard-employe.php on line 4.
 11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
 12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
 13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2026-05-13 08:33:06 --> Error: Class "App\Models\DemandeModel" not found
+[Method: GET, Route: employe/dashboard]
+in APPPATH/Models/EmployesModel.php on line 57.
+ 1 APPPATH/Controllers/EmployeController.php(10): App\Models\EmployesModel->getDernieresDemandes()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\EmployeController->home()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
