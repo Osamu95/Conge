@@ -14,9 +14,7 @@ class AuthController extends BaseController{
             return redirect()->to('/' . strtolower(session()->get('user')['role']) . '/dashboard');
         }
 
-        return view('pages/index', [
-            'title' => 'Login'
-        ]);
+        return view('pages/index');
     }
 
     public function login(){
@@ -38,15 +36,15 @@ class AuthController extends BaseController{
         $EmployesModel = new EmployesModel();
         $user = $EmployesModel->where('email', $email)->first();
 
-        if($user && password_verify($password, $user['password'])) {
+        if($user && password_verify($password, $user['passwd'])) {
             // Vérifier si l'utilisateur est actif
-            if($user['status'] === 'inactive') {
+            if($user['actif'] === 0) {
                 return redirect()->back()->with('error', 'Votre compte est désactivé');
             }
 
             session()->set('user', [
                 'id' => $user['id'],
-                'name' => $user['name'],
+                'name' => $user['prenom'] . ' ' . $user['nom'],
                 'email' => $user['email'],
                 'role' => $user['role']
             ]);
