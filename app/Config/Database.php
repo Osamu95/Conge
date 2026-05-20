@@ -29,7 +29,7 @@ class Database extends Config
         'hostname'     => '127.0.0.1',
         'username'     => '',
         'password'     => '',
-        'database'     => WRITEPATH.'techmada.db',
+        'database'     => WRITEPATH.'rh_interne.db',
         'DBDriver'     => 'SQLite3',
         'DBPrefix'     => '',
         'pConnect'     => false,
