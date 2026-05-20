@@ -1,11 +1,32 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\EmployeModel;
 
 class Home extends BaseController
 {
     public function index(): string
     {
-        return view('welcome_message');
+        return view('auth/login');
     }
-}
+
+    public function login() {
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+
+        $model = new EmployeModel();
+        $user = $model->where('email', $email)->first();
+
+        if (!$user || $user['password'] !== $password) {
+            return redirect()->to('/auth/login')->with('error', 'Nom d’utilisateur ou mot de passe incorrect.');
+        }
+
+        session()->set('user', [
+            'id' => $user['id'],
+            'email' => $user['email'],
+            'role' => $user['role'],
+        ]);
+
+        return redirect()->to('/employe/dashboard');
+    }
+} 

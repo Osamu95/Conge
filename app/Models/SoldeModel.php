@@ -8,27 +8,24 @@ class SoldeModel extends Model
 {
     protected $table = 'soldes';
     protected $primaryKey = 'id';
-    
-    protected $allowedFields = [
-        'employe_id',
-        'types_conge_id',
-        'annee',
-        'jours_attribues',
-        'jours_pris'
-    ];
-    
+    protected $useAutoIncrement = true;
     protected $returnType = 'array';
+    protected $useSoftDeletes = false;
+    protected $allowedFields = ['employe_id', 'type_conge_id', 'annee', 'jours_attribues', 'jours_pris'];
     protected $useTimestamps = false;
-    
-    // Récupérer les soldes avec les types de congé
-    public function getSoldesWithTypes($employe_id, $annee = null)
+
+    public function getSoldeDisponible($employeId, $typeCongeId, $annee = null)
     {
         $annee = $annee ?? date('Y');
-        
-        return $this->select('soldes.*, types_conge.libelle, types_conge.jours_annuels, types_conge.deductible')
-                    ->join('types_conge', 'types_conge.id = soldes.types_conge_id')
-                    ->where('soldes.employe_id', $employe_id)
-                    ->where('soldes.annee', $annee)
-                    ->findAll();
+        $solde = $this->where('employe_id', $employeId)
+            ->where('type_conge_id', $typeCongeId)
+            ->where('annee', $annee)
+            ->first();
+
+        if (!$solde) {
+            return 0;
+        }
+
+        return $solde['jours_attribues'] - $solde['jours_pris'];
     }
 }
